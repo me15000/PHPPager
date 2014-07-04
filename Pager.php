@@ -90,10 +90,16 @@ class Pager {
     }
 
     public function GetFirst($cssClass = 'first') {
+		if($this->AbsolutePage == 1){
+			return '';
+		}
+	
         if ($cssClass) {
             $cssClass = ' class="' . $cssClass . '"';
         }
 
+
+		
         $href = $this->Prefix . 1 . $this->Suffix;
         if ($this->PageCount > $this->Size && $this->FirstPageLink) {
 
@@ -104,6 +110,11 @@ class Pager {
     }
 
     public function GetLast($cssClass = 'last') {
+	
+		if($this->AbsolutePage == $this->PageCount){
+			return '';
+		}
+	
         if ($cssClass) {
             $cssClass = ' class="' . $cssClass . '"';
         }
