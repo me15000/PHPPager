@@ -27,6 +27,7 @@ class Pager {
     public $PrevText = "上一页";
     public $NextText = "下一页";
     public $FirstPageLink = false;
+	
 
     public function GetPageCodes($cssNormal = "normal", $cssSelected = "selected") {
         if ($cssNormal) {
@@ -46,7 +47,8 @@ class Pager {
         $sNumber = 1;
         $eNumber = 1;
         if ($this->PageCount <= $this->Size) {
-            $sNumber = $this->PageCount;
+            $sNumber = 1;
+			$eNumber = $this->PageCount;
         } else {
 
             $mNumber = $this->Size % 2 == 0 ? $this->Size / 2 : ($this->Size - 1) / 2 + 1;
@@ -73,7 +75,7 @@ class Pager {
         for ($p = $sNumber; $p <= $eNumber; $p++) {
             if ($p == $this->AbsolutePage) {
 
-                $htmlString.='<strong' . $cssSelected . '>' . $p . '</strong>';
+                $htmlString.='<strong' . $cssSelected . '>' . $p . '</strong>'."\r\n";;
             } else {
 
                 $href = $this->Prefix . $p . $this->Suffix;
@@ -82,7 +84,7 @@ class Pager {
                     $href = $this->FirstPageLink;
                 }
 
-                $htmlString .= '<a' . $cssNormal . ' href="' . $href . '">' . $p . '</a>';
+                $htmlString .= '<a' . $cssNormal . ' href="' . $href . '">' . $p . '</a>'."\r\n";;
             }
         }
 
@@ -106,7 +108,7 @@ class Pager {
             $href = $this->FirstPageLink;
         }
 
-        return '<a' . $cssClass . ' href="' . $href . '">' . $this->FirstText . '</a>';
+        return '<a' . $cssClass . ' href="' . $href . '">' . $this->FirstText . '</a>'."\r\n";;
     }
 
     public function GetLast($cssClass = 'last') {
@@ -121,7 +123,7 @@ class Pager {
 
         $href = $this->Prefix . $this->PageCount . $this->Suffix;
 
-        return '<a' . $cssClass . ' href="' . $href . '">' . $this->LastText . '</a>';
+        return '<a' . $cssClass . ' href="' . $href . '">' . $this->LastText . '</a>'."\r\n";;
     }
 
     public function GetNext($cssClass = 'next') {
@@ -133,7 +135,7 @@ class Pager {
 
             $href = $this->Prefix . ($this->AbsolutePage + 1) . $this->Suffix;
 
-            return '<a' . $cssClass . ' href="' . $href . '">' . $this->NextText . '</a>';
+            return '<a' . $cssClass . ' href="' . $href . '">' . $this->NextText . '</a>'."\r\n";;
         }
     }
 
@@ -149,7 +151,7 @@ class Pager {
                 $href = $this->FirstPageLink;
             }
 
-            return '<a' . $cssClass . ' href="' . $href . '">' . $this->PrevText . '</a>';
+            return '<a' . $cssClass . ' href="' . $href . '">' . $this->PrevText . '</a>'."\r\n";;
         }
     }
 
@@ -159,7 +161,7 @@ class Pager {
             $cssClass = ' class="' . $cssClass . '"';
         }
 
-        return '<span' . $cssClass . '>' . $this->AbsolutePage . '/' . $this->PageCount . '</span>';
+        return '<span' . $cssClass . '>' . $this->AbsolutePage . '/' . $this->PageCount . '</span>'."\r\n";;
     }
 
     public function ToString() {
